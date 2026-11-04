@@ -1,0 +1,70 @@
+{
+  "program": {
+    "width": 1254,
+    "height": 1254,
+    "zeroAlpha": 1024331,
+    "partialAlpha": 546685,
+    "bounds": {
+      "x": 149,
+      "y": 97,
+      "width": 957,
+      "height": 1066
+    }
+  },
+  "splash": {
+    "width": 1254,
+    "height": 1254,
+    "zeroAlpha": 1299951,
+    "partialAlpha": 271980,
+    "bounds": {
+      "x": 48,
+      "y": 241,
+      "width": 1124,
+      "height": 702
+    }
+  },
+  "ico": [
+    {
+      "width": 16,
+      "height": 16,
+      "bpp": 32,
+      "bytes": 745
+    },
+    {
+      "width": 24,
+      "height": 24,
+      "bpp": 32,
+      "bytes": 1262
+    },
+    {
+      "width": 32,
+      "height": 32,
+      "bpp": 32,
+      "bytes": 1898
+    },
+    {
+      "width": 48,
+      "height": 48,
+      "bpp": 32,
+      "bytes": 3463
+    },
+    {
+      "width": 64,
+      "height": 64,
+      "bpp": 32,
+      "bytes": 5483
+    },
+    {
+      "width": 128,
+      "height": 128,
+      "bpp": 32,
+      "bytes": 17339
+    },
+    {
+      "width": 256,
+      "height": 256,
+      "bpp": 32,
+      "bytes": 59632
+    }
+  ]
+}

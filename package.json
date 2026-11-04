@@ -1,0 +1,125 @@
+{
+  "name": "sucukcenter",
+  "version": "1.8.0-rc.1",
+  "description": "Çevrimdışı stok, satış ve müşteri cari hesap yönetimi",
+  "author": "SucukCenter",
+  "private": true,
+  "engines": {
+    "node": ">=24.0.0 <25",
+    "npm": ">=11.16.0"
+  },
+  "allowScripts": {
+    "better-sqlite3": false
+  },
+  "main": "dist-electron/electron/main.js",
+  "scripts": {
+    "dev": "npm run build && node scripts/dev.cjs",
+    "build:main": "tsc -p tsconfig.electron.json",
+    "build": "npm run typecheck && npm run build:main && vite build",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.electron.json --noEmit",
+    "lint": "eslint .",
+    "test": "npm run build:main && node scripts/test.cjs",
+    "test:ui": "node scripts/ui-test.cjs",
+    "test:monthly-ui": "node scripts/monthly-ui.cjs",
+    "test:design-ui": "node scripts/design-ui.cjs",
+    "test:brand": "node scripts/brand-test.cjs",
+    "build:brand": "node scripts/brand.cjs",
+    "test:package": "node scripts/package-test.cjs",
+    "dist": "npm run build && electron-builder --win nsis --x64",
+    "dist:signed": "npm run build && electron-builder --win nsis --x64 --config electron-builder.signed.cjs",
+    "postinstall": "node scripts/verify-native.cjs",
+    "test:performance": "npm run build:main && node scripts/performance.cjs",
+    "build:review-test": "npm run build && electron-builder --win --x64 --dir --config electron-builder.review.cjs",
+    "test:review-runtime": "node scripts/review-runtime.cjs",
+    "test:accounts-ui": "node scripts/accounts-ui.cjs",
+    "test:upgrade-data": "node scripts/upgrade-data-ui.cjs",
+    "test:preorders-ui": "node scripts/preorders-ui.cjs",
+    "test:choices-ui": "node scripts/choices-ui.cjs",
+    "test:records-ui": "node scripts/records-ui.cjs",
+    "test:audit-ui": "node scripts/audit-regression-ui.cjs && node scripts/audit-navigation.cjs after && node scripts/audit-refresh.cjs after",
+    "test:audit-compare": "npm run build:main && node scripts/audit-compare.cjs",
+    "test:expenses-ui": "node scripts/expenses-ui.cjs",
+    "test:appearance-ui": "node scripts/appearance-ui.cjs",
+    "dist:production": "node scripts/check-production-certificate.cjs && npm run build && electron-builder --win nsis --x64 --config electron-builder.production.cjs",
+    "test:startup-ui": "npm run build:main && node scripts/startup-ui.cjs",
+    "test:calendar-focus-ui": "node scripts/calendar-focus-ui.cjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/inter": "5.3.0",
+    "better-sqlite3": "13.0.3",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.468.0",
+    "radix-ui": "^1.4.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "tailwind-merge": "^3.3.0",
+    "zod": "^4.1.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.0",
+    "@resvg/resvg-js": "2.6.2",
+    "@tailwindcss/vite": "^4.1.0",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "6.1.2",
+    "electron": "45.1.0",
+    "electron-builder": "26.18.0",
+    "eslint": "^9.39.0",
+    "playwright": "^1.56.0",
+    "tailwindcss": "^4.1.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.0",
+    "vite": "8.3.5"
+  },
+  "build": {
+    "extraResources": [
+      {
+        "from": "build/icon.ico",
+        "to": "icon.ico"
+      }
+    ],
+    "appId": "com.sucukcenter.desktop",
+    "productName": "SucukCenter",
+    "directories": {
+      "output": "review-builds/final"
+    },
+    "files": [
+      "dist/**/*",
+      "dist-electron/electron/**/*",
+      "dist-electron/shared/**/*",
+      "package.json",
+      "THIRD_PARTY_NOTICES.md",
+      "third_party/**/*"
+    ],
+    "asar": true,
+    "npmRebuild": false,
+    "asarUnpack": [
+      "node_modules/better-sqlite3/**/*"
+    ],
+    "win": {
+      "target": "nsis",
+      "artifactName": "SucukCenter-${version}-Inceleme-Kurulum.${ext}",
+      "signExecutable": false,
+      "icon": "build/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "deleteAppDataOnUninstall": false,
+      "runAfterFinish": true,
+      "installerLanguages": [
+        "tr_TR"
+      ],
+      "language": "1055",
+      "include": "build/safe-update.nsh",
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico"
+    }
+  }
+}

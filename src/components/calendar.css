@@ -1,0 +1,403 @@
+.period-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  background: var(--card);
+  margin-bottom: 20px;
+  min-width: 0;
+}
+.period-bar > div:first-child {
+  flex-shrink: 0;
+}
+.period-eyebrow {
+  display: block;
+  font-size: 10px;
+  font-weight: 650;
+  letter-spacing: 1px;
+  color: var(--muted-foreground);
+  margin-bottom: 7px;
+}
+.period-bar [data-slot='button'] {
+  background: var(--background);
+  min-width: 210px;
+  justify-content: flex-start;
+}
+.period-bar [data-slot='button'] > span {
+  flex: 1;
+  text-align: left;
+}
+.period-description {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: right;
+  font-size: 12px;
+  color: var(--muted-foreground);
+}
+.period-description strong {
+  font-size: 13px;
+  color: var(--foreground);
+  font-weight: 550;
+}
+.calendar-popover {
+  z-index: 100;
+  width: min(330px, calc(100vw - 24px));
+  max-height: var(--radix-popover-content-available-height);
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card);
+  color: var(--foreground);
+  box-shadow: var(--shadow);
+  padding: 14px;
+  animation: calendar-in 120ms ease-out;
+  scrollbar-width: thin;
+  outline: none;
+}
+.calendar-popover[data-state='closed'] {
+  animation: none;
+}
+.calendar-popover .full {
+  margin-top: 12px;
+  justify-content: center;
+}
+.calendar-heading {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.calendar-heading > [data-slot='button'] {
+  height: 32px;
+  width: 30px;
+  flex: 0 0 30px;
+}
+.calendar-heading select {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 550;
+  background: var(--card);
+  padding: 0 5px;
+  min-width: 72px;
+  height: 34px;
+}
+.calendar-heading input {
+  width: 76px;
+  height: 34px;
+  font-size: 14px;
+  padding: 0 6px;
+  background: var(--card);
+}
+.calendar-week {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 2px;
+}
+.calendar-week [role='columnheader'] {
+  text-align: center;
+  padding: 4px 0 9px;
+  color: var(--muted-foreground);
+  font-size: 12px;
+  font-weight: 550;
+}
+.calendar-week button {
+  border: 1px solid transparent;
+  border-radius: 7px;
+  height: 36px;
+  min-width: 0;
+  background: transparent;
+  font-size: 13px;
+  color: var(--foreground);
+  position: relative;
+}
+.calendar-week button:hover {
+  background: var(--muted);
+}
+.calendar-week button[data-outside='true'] {
+  color: var(--muted-foreground);
+  opacity: 0.5;
+}
+.calendar-week button[data-between='true'] {
+  background: var(--primary-soft);
+  border-radius: 2px;
+  opacity: 1;
+}
+.calendar-week button[aria-current='date']::after {
+  content: '';
+  width: 4px;
+  height: 4px;
+  background: var(--primary);
+  position: absolute;
+  bottom: 3px;
+  left: calc(50% - 2px);
+  border-radius: 50%;
+}
+.calendar-week button[data-edge='true'] {
+  background: var(--primary);
+  color: var(--primary-foreground);
+  font-weight: 650;
+  opacity: 1;
+}
+.dark .calendar-week button[data-edge='true'] {
+  color: var(--primary-foreground);
+}
+.calendar-week button:disabled {
+  opacity: 0.24;
+  background: var(--muted);
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+.calendar-week button:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 1px;
+  z-index: 1;
+  box-shadow: 0 0 0 3px var(--card);
+}
+.calendar-week button[data-edge='true'][aria-current='date']::after {
+  background: currentColor;
+}
+.calendar-legend {
+  display: flex;
+  gap: 18px;
+  font-size: 11px;
+  color: var(--muted-foreground);
+  padding-top: 12px;
+}
+.calendar-legend span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.calendar-legend i {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+}
+.legend-today {
+  border: 1px solid var(--primary);
+  border-radius: 50%;
+}
+.legend-selected {
+  background: var(--primary);
+  border-radius: 2px;
+}
+.date-entry {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+.date-entry > [data-slot='input'] {
+  padding-right: 44px;
+  width: 100%;
+  letter-spacing: 0.4px;
+  font-variant-numeric: tabular-nums;
+}
+.date-entry > [data-slot='button'] {
+  position: absolute;
+  right: 2px;
+  top: 2px;
+  height: 36px;
+  width: 38px;
+  flex-basis: 38px;
+  color: var(--muted-foreground);
+}
+.date-field > small {
+  font-size: 12px;
+}
+.period-popover {
+  width: min(720px, calc(100vw - 24px));
+  padding: 20px;
+}
+.period-popover.period-mode-month {
+  width: min(420px, calc(100vw - 24px));
+}
+.period-popover.period-mode-day {
+  width: min(390px, calc(100vw - 24px));
+}
+.period-dialog-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 14px;
+}
+.period-dialog-title strong {
+  font-size: 17px;
+  font-weight: 650;
+}
+.period-dialog-title span {
+  font-size: 12px;
+  color: var(--muted-foreground);
+}
+.period-modes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 3px;
+  background: var(--muted);
+  padding: 4px;
+  border-radius: 9px;
+  margin-bottom: 18px;
+}
+.period-modes button {
+  height: 34px;
+  font-size: 13px;
+  padding: 0 9px;
+}
+.period-modes button[aria-pressed='true'] {
+  background: var(--card);
+  color: var(--foreground);
+  box-shadow: 0 1px 4px #0002;
+}
+.year-choice {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+  margin: 10px 0 18px;
+}
+.year-choice label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--muted-foreground);
+  font-size: 13px;
+}
+.year-choice input {
+  width: 108px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 17px;
+}
+.month-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+.month-grid button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  height: 46px;
+  font-size: 14px;
+  border: 1px solid var(--border);
+  background: var(--background);
+  color: var(--foreground);
+  border-radius: 8px;
+}
+.month-grid button:hover {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+}
+.month-grid button[aria-pressed='true'] {
+  background: var(--primary-soft);
+  color: var(--primary);
+  border-color: var(--primary);
+  font-weight: 650;
+}
+.period-date-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.period-mode-day .period-date-fields {
+  grid-template-columns: 1fr;
+}
+.calendar-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  margin-top: 12px;
+  min-width: 0;
+}
+.period-mode-day .calendar-pair {
+  grid-template-columns: 1fr;
+}
+.second-calendar {
+  border-left: 1px solid var(--border);
+  padding-left: 20px;
+}
+.calendar-range-hint {
+  font-size: 12px;
+  color: var(--muted-foreground);
+  margin-top: -4px;
+}
+.period-shortcuts {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+  margin-top: 18px;
+}
+.period-shortcuts button {
+  font-size: 12px;
+  height: 32px;
+  padding: 0 10px;
+}
+.period-selection {
+  font-size: 13px;
+  font-weight: 550;
+  margin-top: 16px;
+}
+.period-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+  margin-top: 16px;
+}
+@keyframes calendar-in {
+  from {
+    opacity: 0;
+    transform: translateY(-3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 740px) {
+  .calendar-pair {
+    grid-template-columns: 1fr;
+  }
+  .second-calendar {
+    display: none;
+  }
+  .period-popover {
+    max-width: 420px;
+  }
+  .period-date-fields {
+    gap: 10px;
+  }
+  .period-popover {
+    padding: 16px;
+  }
+  .period-bar {
+    align-items: flex-start;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .period-description {
+    text-align: left;
+  }
+  .period-bar [data-slot='button'] {
+    min-width: 0;
+  }
+  .calendar-heading {
+    gap: 4px;
+  }
+  .calendar-week button {
+    height: 34px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .calendar-popover {
+    animation: none;
+  }
+}
