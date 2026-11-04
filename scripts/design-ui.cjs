@@ -32,6 +32,12 @@ async function launch(scale) {
     timeout: 30000,
   });
   page = await require('./electron-test-window.cjs').mainWindow(app);
+  // Desktop interactions need the wide sidebar. CI work areas can start smaller;
+  // the explicit size matrix below separately covers the compact layout.
+  await app.evaluate(({ BrowserWindow }) => {
+    const main = BrowserWindow.getAllWindows().find((w) => w.webContents.getURL().endsWith('index.html'));
+    main.setSize(1440, 940);
+  });
   page.setDefaultTimeout(15000);
   page.on('pageerror', (e) => errors.push(e.message));
   await page.getByRole('heading', { name: 'İşletme Özeti', exact: true }).waitFor();
