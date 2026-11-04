@@ -47,6 +47,8 @@ Güncel paket özeti ve indirme: [sürüm notları](RELEASE-NOTES.md), [SHA256SU
 
 İlk GitHub Windows koşuları veri/lint/üretim ve temel iş akışlarını geçti; design-ui testi, sanal masaüstünde başlangıç genişliği 1.100 px altına düştüğü için geniş menüye ait düğmeyi bulamadı. Bu kontrolün başlangıç boyutu artık açıkça 1.440×940 olarak belirleniyor; dar görünümün ayrı boyut matrisi korunuyor. Düzeltme yalnız test kodundadır. Yayınlanan v1.8.0-rc.1 etiketi ve imzalı kurulum dosyası değiştirilmedi. İlk koşuların başarısızlığı gizlenmedi: [koşu](https://github.com/SupremeRia/SucukCenter/actions/runs/41916395286). Güncel ana dalın sonucu Actions sayfasında ayrıca görülebilir.
 
+Sonraki [koşuda](https://github.com/SupremeRia/SucukCenter/actions/runs/41917675681) tüm veri/arayüz/tema/açılış/performans kontrolleri geçti ve NSIS üretildi; electron-builder CI ortamını görünce kendiliğinden yayın denediğinden, bulunmayan GH_TOKEN nedeniyle adım başarısız oldu. Otomatik yayın için anahtar eklenmedi. Dört paketleme komutu artık açıkça `--publish never` kullanıyor; Releases yayını yalnız ayrı, açık yayın işlemiyle yapılıyor. Paketleme yapılandırması düzeltmesi yayınlanmış etiketi veya EXE'yi değiştirmiyor.
+
 # Tarihsel doğrulama — 04.11.2026 / 1.7.0
 
 Giderler, ortak net sonuç/marj, tarihli gider iadesi ve şema 10 geçişi tamamlandı. 83/83 veri testi, lint/typecheck/üretim derlemesi, temel/cari/aylık/ön sipariş/kayıt/seçim/denetim testleri, 18 tasarım kombinasyonu, gerçek ve paketli gider akışları, paketli runtime ve üretim ASAR karşılaştırması geçti. Gerçek 1.6.1 kodundan eski giderler dahil izole yükseltme doğrulandı. Paket, kurallar ve fiziksel kurulum sınırları: [docs/EXPENSES-1.7.md](docs/EXPENSES-1.7.md). Gerçek işletme verisiyle kurulum/geçiş yapılmadı.

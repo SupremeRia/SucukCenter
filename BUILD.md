@@ -1,5 +1,7 @@
 # Temiz kaynaktan derleme
 
+Paketleme komutları `--publish never` kullanır. CI algılandığında da kendiliğinden GitHub yayını yapmaz ve yayın anahtarı istemez; Release yayını ayrı, açık bir işlemdir.
+
 Windows x64, Node.js 24.x ve npm 11.16.0+ gerekir. Kaynağı [depodan](https://github.com/SupremeRia/SucukCenter) alın. Kurulum/geliştirme sırasında internet gerekir; son kullanıcı işlevleri çevrimdışıdır.
 
 ```powershell
